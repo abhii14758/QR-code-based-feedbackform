@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <title>Feedback Form</title>
+  <script type="text/javascript">
+    window.history.forward();
+    function noBack()
+    {
+        window.history.forward();
+    }
+</script>
+<body onLoad="noBack();" onpageshow="if (event.persisted) noBack();" onUnload="">
+  <link rel="stylesheet" href="form.css">
+  <!-- <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+<script>
+function SubForm (){
+    $.ajax({
+        url:'https://api.apispreadsheets.com/data/OcAxv1AAoPW86XpK/',
+        type:'post',
+        data:$("#myForm").serializeArray(),
+        success: function(){
+          alert("Form Data Submitted :)")
+        },
+        error: function(){
+          alert("There was an error :(")
+        }
+    });
+}
+</script> -->
+</head>
+
+<body>
+  <!-- <form id="myForm">
+    <label>Full Name</label>
+    <br/>
+    <input name="full_name" />
+    <br/>
+    <label>Email</label>
+    <br/>
+    <input name="email" />
+    <br/>
+    <label>Age</label>
+    <br/>
+    <input type="radio" id="age" name="age" value="18-35" /> 18-35<br/>
+    <input type="radio" id="age" name="age" value="35+" /> 35+<br/>
+    <br/>
+    <label>Message</label>
+    <br/>
+    <textarea name="message">
+    </textarea>
+    <br/>
+    <br/>
+  </form> -->
+
+  <form id="myForm" method="post" action="form.php">
+    <div class="head">
+      <img src="download.png" alt="">
+      <p>Gujarat Police</p>
+    </div>
+    <div class="box">
+      <h1>Feedback Form</h1> <br>
+
+      <label class="question">Choose a Police Station : </label>
+      <select id="Station" name="Station" required>
+        <option id="station" value="">------  Choose Police Station  ------</option>
+        <option id="station" value="Panigate Police Station" >Panigate Police Station</option>
+        <option id="station" value="Amdavadi Pole - Jubilee Baug Police Chowky" >Amdavadi Pole - Jubilee Baug Police Chowky</option>
+        <option id="station" value="Kareli Baug Police Station" >Kareli Baug Police Station</option>
+        <option id="station" value="Sayajigunj Police Station" >Sayajigunj Police Station</option>
+        <option id="station" value="City Police Station" >City Police Station</option>
+        <option id="station" value="Gunj Khana Police Station" >Gunj Khana Police Station</option>
+        <option id="station" value="Alkapuri Police Chowky" >Alkapuri Police Chowky</option>
+        <option id="station" value="Bahuchraji Police Chowky" >Bahuchraji Police Chowky</option>
+        <option id="station" value="Gotri Police Station" >Gotri Police Station</option>
+        <option id="station" value="Wadi Police Station" >Wadi Police Station</option>
+        <option id="station" value="Vadodara Police" > Vadodara Police</option>
+        <option id="station" value="Vadodara Railway Police Station" >Vadodara Railway Police Station</option>
+        <option id="station" value="Mahila Police Station" >Mahila Police Station</option>
+        <option id="station" value="Atladra Police Chowky" >Atladra Police Chowky</option>
+      </select>
+
+      <p class="question">How did you come to the police station?</p>
+      <div id="q1" class="question-answer">
+        <label><input type="radio" value="Through a person known to a police officer" name="Question-1" id="Question-1"
+            required /> Through a person known to a police officer</label><br>
+        <label><input type="radio" value="With a neighbour/ local leader" name="Question-1" id="Question-1" required />
+          With a neighbour/ local leader</label><br>
+        <label><input type="radio" value="On your own" name="Question-1" id="Question-1" required /> On your
+          own</label><br>
+      </div>
+
+      <p class="question">After how much time you were heard in Police Station</p>
+      <div class="question-answer">
+        <label><input type="radio" value="More than 15 minutes" name="Question-2" id="Question-2" required /> More than
+          15 minutes </label><br>
+        <label><input type="radio" value="15 minutes" name="Question-2" id="Question-2" required /> 15 minutes
+        </label><br>
+        <label><input type="radio" value="10 minutes" name="Question-2" id="Question-2" required /> 10 minutes
+        </label><br>
+        <label><input type="radio" value="5 minutes" name="Question-2" id="Question-2" required /> 5 minutes
+        </label><br>
+        <label><input type="radio" value="Immediately" name="Question-2" id="Question-2" required /> Immediately
+        </label><br>
+      </div>
+      <p class="question">How was the behiviour of police</p>
+      <div class="question-answer">
+        <label><input type="radio" value="Poor" name="Question-4" id="Question-4" required /> Poor </label><br>
+        <label><input type="radio" value="Average" name="Question-4" id="Question-4" required /> Average
+        </label><br>
+        <label><input type="radio" value="Good" name="Question-4" id="Question-4" required /> Good
+        </label><br>
+        <label><input type="radio" value="Best" name="Question-4" id="Question-4" required /> Best
+        </label><br>
+        
+      </div>
+
+
+
+      <p class="question">How would you describe your experience with police
+        officers in the police station? </p>
+      <!-- <input type="text" name="Question-3" id="Question-3" required> -->
+      <textarea rows="5" name="Question-3" id="Question-3" required maxlength="300"></textarea><br>
+
+
+      <button type="submit">Submit</button>
+
+    </div>
+
+  </form>
+
+</body>
+
+</html>
