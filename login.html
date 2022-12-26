@@ -1,53 +1,108 @@
-<html>
-<head>
-  <title>Login Page</title>
-  <!--<script language="javascript" type="text/javascript">-->
-  <!--  window.history.forward();-->
-  <!--</script>-->
-  <script type="text/javascript">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword,  createUserWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js";
 
-    function preventback(){window.history.forward()};
-    setTimeout("preventback()",0);
-    window.onload = function(){null};
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "",
+  authDomain: "",
+  databaseURL: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: "",
+  measurementId: ""
+};
 
-  </script>
-  <link rel="stylesheet" href="login.css">
-  
-    <script type="module" src="login.js"></script>
-    
-  </head>
-  <body>
+ const app = initializeApp(firebaseConfig);
+ const auth = getAuth(app);
 
-    <div class="fadeIn first">
-      <img src="download.png" id="icon" alt="User Icon" />
-    </div>
-    
-    <div id="admin">
-		<a href="index.html">Feedback Form</a>
-	</div>
-    
-    <div class="center-box" id="login-div">
-      <h2 >Login</h2><br>
-      <input type="email" id="login-email" class="text-field" name="login-email" placeholder="Email" required/><br>
-      <input type="password" id="login-password" class="text-field" name="login-password" placeholder="Password" required/><br>
-      <button id="login-btn" class="btn-style">Login</button><br>
-      
-      <!-- <button id="reg-btn" class="an-btn">Don't have an account? REGISTER</button> -->
-   </div>
 
-<!-- <div class="center-box" id="register-div">nt? LOGIN</button>
-     <link rel="stylesheet" href="index.html">
-  </div>   
-     <h2>Register</h2>
-     <input type="email" id="register-email" class="text-field" name="register-email" placeholder="Email" required/><br>
-     <input type="password" id="register-password" class="text-field" name="register-password" placeholder="Password" required/><br>
-    <button id="register-btn" class="btn-style">Register</button><br>
-     <button id="log-btn" class="an-btn">have an accou -->
+//   document.getElementById("reg-btn").addEventListener('click', function(){
+//    document.getElementById("register-div").style.display="inline";
+//    document.getElementById("login-div").style.display="none";
+// });
 
-<div id="result-box">
-  <h3 id="result"></h3><br>
-     <button id="log-out-btn" class="btn-style">Try Again</button>
-</div>
+// document.getElementById("log-btn").addEventListener('click', function(){
+//  document.getElementById("register-div").style.display="none";
+//  document.getElementById("login-div").style.display="inline";
 
-  </body>
-  </html>
+// });
+
+  document.getElementById("login-btn").addEventListener('click', function(){
+   const loginEmail= document.getElementById("login-email").value;
+   const loginPassword =document.getElementById("login-password").value;
+
+  //  signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+  // .then((userCredential) => {
+  //   const user = userCredential.user;
+  //   document.getElementById("result-box").style.display="inline";
+  //    document.getElementById("login-div").style.display="none";
+  //   //  document.getElementById("result").innerHTML="Welcome Back<br>"+loginEmail+" was Login Successfully";
+  //    window.location.href="index.html";
+     
+  // })
+  signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+  .then((userCredential) => {
+    const user = userCredential.user;
+    document.getElementById("result-box").style.display="inline";
+     document.getElementById("login-div").style.display="none";
+     document.getElementById("result").innerHTML="Welcome Back<br>"+loginEmail+" was Login Successfully";
+
+     let userEmail= document.getElementById("login-email").value;
+     let userPassword =document.getElementById("login-password").value;
+   
+     let userData = {
+
+      emailId : userEmail,
+      password : userPassword,
+     };
+
+     let convertedUserData = JSON.stringify(userData);
+     sessionStorage.setItem('user-login',convertedUserData);
+     location.href="dashboard.php";
+     
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    document.getElementById("result-box").style.display="inline";
+     document.getElementById("login-div").style.display="none";
+     document.getElementById("result").innerHTML="Sorry ! <br>"+errorMessage;
+
+  });
+});
+
+
+//   document.getElementById("register-btn").addEventListener('click', function(){
+
+//    const registerEmail= document.getElementById("register-email").value;
+//    const registerPassword =document.getElementById("register-password").value;
+
+//    createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
+//   .then((userCredential) => {
+//     const user = userCredential.user;
+//     document.getElementById("result-box").style.display="inline";
+//      document.getElementById("register-div").style.display="none";
+//      document.getElementById("result").innerHTML="Welcome <br>"+registerEmail+" was Registered Successfully";
+  // })
+  // .catch((error) => {
+  //   const errorCode = error.code;
+  //   const errorMessage = error.message;
+  //   document.getElementById("result-box").style.display="inline";
+  //    document.getElementById("register-div").style.display="none";
+  //    document.getElementById("result").innerHTML="Sorry ! <br>"+errorMessage;
+
+  // });
+// });
+
+
+document.getElementById("log-out-btn").addEventListener('click', function(){
+  signOut(auth).then(() => {
+     document.getElementById("result-box").style.display="none";
+       document.getElementById("login-div").style.display="inline";
+  })
+  .catch((error) => {
+     document.getElementById("result").innerHTML="Sorry ! <br>"+errorMessage;
+  });
+
+});
